@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Result = ({ selected }) => {
+const Result = ({ selected,cost,exist }) => {
     return (
         <div className='w-[30%] text-center py-2 space-y-5 font-semibold'>
             <div className='border py-2 rounded-md shadow-md space-y-1'>
@@ -11,8 +11,8 @@ const Result = ({ selected }) => {
             </div>
             <div className='border py-2 rounded-md shadow-md space-y-1 underline'>
                 <p>Budget : 20000$</p>
-                <p>Total Cost : </p>
-                <p>Remaining Balnece : </p>
+                <p>Total Cost : {cost}$</p>
+                <p>Remaining Balnece : {exist}$</p>
             </div>
         </div>
     )

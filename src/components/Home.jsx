@@ -12,13 +12,32 @@ const Home = () => {
     }, [])
     // console.log(actors)
     const [selected, setSelected] = useState([])
+    const [cost, setCost] = useState(0)
+    const [exist, setExist] = useState(20000)
     const handleSelectedActors = (data) => {
         let newArray = [...selected, data]
+
+        let count = data.salary;
+
         if (selected.includes(data)) {
             return alert('Already booked')
         }
         else {
-            setSelected(newArray)
+            // setSelected(newArray)
+            selected.forEach(item => {
+                count += item.salary;
+            })
+
+            if (count > 20000) {
+                alert('tumi fail tumar taka sesh')
+            }
+            else {
+                setSelected(newArray)
+                setCost(count)
+
+                let remaining = 20000 - count
+                setExist(remaining)
+            }
         }
     }
 
@@ -29,7 +48,7 @@ const Home = () => {
             <div className=' w-[60%] text-center py-2  grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {actors.map((actor, index) => <Cart key={index} actor={actor} handleSelectedActors={handleSelectedActors} />)}
             </div>
-            <Result selected={selected} />
+            <Result selected={selected} cost={cost} exist={exist} />
         </div>
     )
 }
